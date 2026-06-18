@@ -2,7 +2,14 @@ name: Release
 
 # Publishes the package to NuGet when a GitHub Release is published.
 # Tag the release "v1.2.3" — the version is taken from the tag.
-# Requires a repository secret named NUGET_API_KEY (Settings → Secrets and variables → Actions).
+#
+# Uses NuGet Trusted Publishing (OIDC) — no long-lived API key is stored.
+# One-time setup on nuget.org (your username -> Trusted Publishing -> add policy):
+#   Repository Owner: Nis-Knowit
+#   Repository:       Knowit.Umbraco.EditorLock
+#   Workflow File:    release.yml
+#   Environment:      (leave empty)
+# Then add a repo secret NUGET_USER with your nuget.org username (profile name, NOT your email).
 on:
   release:
     types: [published]
@@ -10,6 +17,9 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # required for OIDC token issuance
     steps:
       - uses: actions/checkout@v4
 
@@ -38,9 +48,16 @@ jobs:
           -p:Version=${{ steps.ver.outputs.version }}
           -o artifacts
 
+      # Exchange the GitHub OIDC token for a short-lived NuGet API key (valid ~1 hour).
+      - name: NuGet login (Trusted Publishing)
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: ${{ secrets.NUGET_USER }}
+
       - name: Push to NuGet
         run: >
           dotnet nuget push "artifacts/*.nupkg"
-          --api-key "${{ secrets.NUGET_API_KEY }}"
+          --api-key ${{ steps.login.outputs.NUGET_API_KEY }}
           --source https://api.nuget.org/v3/index.json
           --skip-duplicate
