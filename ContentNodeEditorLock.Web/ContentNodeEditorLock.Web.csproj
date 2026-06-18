@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ContentNodeEditorLock\Knowit.Umbraco.EditorLock.csproj" />
+    <ProjectReference Include="..\Knowit.Umbraco.EditorLock\Knowit.Umbraco.EditorLock.csproj" />
   </ItemGroup>
 
 

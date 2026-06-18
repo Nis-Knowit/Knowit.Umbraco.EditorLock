@@ -21,7 +21,7 @@ jobs:
           node-version: '20'
 
       - name: Build backoffice client
-        working-directory: ContentNodeEditorLock/Client
+        working-directory: Knowit.Umbraco.EditorLock/Client
         run: |
           npm ci
           npm run build

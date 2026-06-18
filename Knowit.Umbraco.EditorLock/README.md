@@ -67,13 +67,13 @@ The backoffice client (Lit/TypeScript) compiles into `wwwroot/App_Plugins/Knowit
 
 ```sh
 # 1. Build the client (required once on a fresh checkout — the SDK globs wwwroot at evaluation time)
-cd ContentNodeEditorLock/Client
+cd Knowit.Umbraco.EditorLock/Client
 npm install
 npm run build
 
 # 2. Pack (a Release build re-runs the client build automatically)
 cd ../..
-dotnet pack ContentNodeEditorLock/Knowit.Umbraco.EditorLock.csproj -c Release -o ./artifacts
+dotnet pack Knowit.Umbraco.EditorLock/Knowit.Umbraco.EditorLock.csproj -c Release -o ./artifacts
 ```
 
 ## Requirements
