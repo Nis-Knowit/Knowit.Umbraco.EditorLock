@@ -1,0 +1,14 @@
+{
+  "id": "Knowit.Umbraco.EditorLock",
+  "name": "Content Node Editor Lock",
+  "version": "1.0.0",
+  "allowTelemetry": true,
+  "extensions": [
+    {
+      "name": "Content Node Editor Lock Bundle",
+      "alias": "Knowit.Umbraco.EditorLock.Bundle",
+      "type": "bundle",
+      "js": "/App_Plugins/Knowit.Umbraco.EditorLock/knowit-umbraco-editor-lock.js"
+    }
+  ]
+}

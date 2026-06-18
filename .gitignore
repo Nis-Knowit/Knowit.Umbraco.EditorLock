@@ -1,0 +1,25 @@
+# Build output
+[Bb]in/
+[Oo]bj/
+artifacts/
+
+# NuGet
+*.nupkg
+*.snupkg
+
+# Node
+node_modules/
+
+# Visual Studio / Rider / VS Code
+.vs/
+.idea/
+*.user
+*.suo
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Note: the test host (ContentNodeEditorLock.Web) keeps its own .gitignore that excludes the
+# SQLite database, umbraco/Data and umbraco/Logs. The package's built client assets under
+# wwwroot/App_Plugins are intentionally committed so the package builds without a Node step.

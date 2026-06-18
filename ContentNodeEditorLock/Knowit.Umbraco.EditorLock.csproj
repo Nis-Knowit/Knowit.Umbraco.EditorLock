@@ -1,0 +1,70 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <StaticWebAssetBasePath>/</StaticWebAssetBasePath>
+  </PropertyGroup>
+
+  <!-- NuGet package metadata -->
+  <PropertyGroup>
+    <PackageId>Knowit.Umbraco.EditorLock</PackageId>
+    <Product>Content Node Editor Lock</Product>
+    <Title>Content Node Editor Lock</Title>
+    <Version>1.0.0</Version>
+    <Authors>Knowit</Authors>
+    <Company>Knowit</Company>
+    <Description>Prevents two editors from changing the same Umbraco content node at the same time. When a node is already open, a second editor gets a read-only view with a red border and can Request access (the holder is prompted to accept) or Force access (immediate takeover). Real-time over SignalR. Umbraco 17+.</Description>
+    <PackageTags>umbraco;umbraco-marketplace;editor-lock;content-lock;concurrency;signalr</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/Nis-Knowit/Knowit.Umbraco.EditorLock</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Nis-Knowit/Knowit.Umbraco.EditorLock</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <IncludeContentInPack>true</IncludeContentInPack>
+  </PropertyGroup>
+
+  <!-- Central package management - no versions -->
+  <ItemGroup>
+    <PackageReference Include="Umbraco.Cms.Api.Common" />
+    <PackageReference Include="Umbraco.Cms.Api.Management" />
+    <PackageReference Include="Umbraco.Cms.Web.Common" />
+    <PackageReference Include="Umbraco.Cms.Web.Website" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Don't include the client source folder in the build/package output -->
+    <Content Remove="Client\**" />
+
+    <!-- Make the umbraco-package.json visible in the solution (the built copy in wwwroot is what ships) -->
+    <None Include="Client\public\umbraco-package.json" Pack="false" />
+
+    <!-- Pack the README so it shows on the NuGet package page -->
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <!--
+    On a Release build (used for packing) compile the Lit/TypeScript client into wwwroot first, so the
+    packed static web assets are always up to date. During day-to-day debug builds this is skipped;
+    use `npm run watch` in the Client folder instead. Pass -p:SkipClientBuild=true to opt out.
+  -->
+  <!--
+    Compiles the Lit/TypeScript client into wwwroot. Runs on Release (used for packing). Because the
+    Razor SDK globs wwwroot at project-evaluation time, a build from a *pristine* checkout (no wwwroot
+    yet) needs the client built first: run `npm run build` in Client, then `dotnet pack -c Release`.
+    Once wwwroot exists, `dotnet pack -c Release` rebuilds it and packs in one step. `dotnet build`
+    (Debug) skips this — use `npm run watch` while developing. Opt out with -p:SkipClientBuild=true.
+  -->
+  <Target Name="BuildClientAssets" BeforeTargets="BeforeBuild"
+          Condition="Exists('Client\package.json') AND '$(Configuration)' == 'Release' AND '$(SkipClientBuild)' != 'true'">
+    <Message Importance="high" Text="Building Content Node Editor Lock client assets (Release)..." />
+    <Exec Command="npm install" WorkingDirectory="Client" Condition="!Exists('Client\node_modules')" />
+    <Exec Command="npm run build" WorkingDirectory="Client" />
+  </Target>
+
+</Project>

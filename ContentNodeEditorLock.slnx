@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="ContentNodeEditorLock.Web/ContentNodeEditorLock.Web.csproj" />
+  <Project Path="ContentNodeEditorLock/Knowit.Umbraco.EditorLock.csproj" />
+</Solution>
