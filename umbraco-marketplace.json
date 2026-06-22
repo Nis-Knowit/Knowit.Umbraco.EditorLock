@@ -1,0 +1,39 @@
+{
+  "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
+  "Title": "Knowit Umbraco Editor Lock",
+  "Category": "Editor Tools",
+  "PackageType": "Package",
+  "LicenseTypes": ["Free"],
+  "Description": "Prevents two editors from changing the same content node at the same time. When a node is already open, a second editor gets a read-only view with a red border and can either Request access (the current editor is prompted to accept or decline) or Force access (an immediate takeover with confirmation). Locks auto-release when the holder disconnects or goes idle, so nodes never get stuck. Real-time over SignalR.",
+  "Tags": ["editor lock", "content lock", "concurrency", "collaboration", "signalr"],
+  "VersionDependencyMode": "SemVer",
+  "AuthorDetails": {
+    "Name": "Knowit",
+    "Url": "https://www.knowit.eu",
+    "SyncContributorsFromRepository": true
+  },
+  "DocumentationUrl": "https://github.com/Nis-Knowit/Knowit.Umbraco.EditorLock#readme",
+  "IssueTrackerUrl": "https://github.com/Nis-Knowit/Knowit.Umbraco.EditorLock/issues",
+  "Screenshots": [
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/Nis-Knowit/Knowit.Umbraco.EditorLock/main/docs/img/locked-readonly.png",
+      "Caption": "A second editor gets a read-only node with a red border and the lock buttons"
+    },
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/Nis-Knowit/Knowit.Umbraco.EditorLock/main/docs/img/request-prompt.png",
+      "Caption": "The current editor is prompted to accept or decline the request"
+    },
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/Nis-Knowit/Knowit.Umbraco.EditorLock/main/docs/img/access-requested-toast.png",
+      "Caption": "The requester is told their request has been sent"
+    },
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/Nis-Knowit/Knowit.Umbraco.EditorLock/main/docs/img/force-access-confirm.png",
+      "Caption": "Force access asks for confirmation before taking over"
+    },
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/Nis-Knowit/Knowit.Umbraco.EditorLock/main/docs/img/editor-normal.png",
+      "Caption": "The lock holder keeps editing as normal"
+    }
+  ]
+}
