@@ -12,7 +12,7 @@ are replaced by **Request access** and **Force access**. Real-time, over SignalR
 
 **Second editor — locked out (read-only, red border, lock buttons):**
 
-![Locked, read-only node with a red border](https://raw.githubusercontent.com/Nis-Knowit/Knowit.Umbraco.EditorLock/main/docs/img/locked-readonly.png)
+![Locked, read-only node with a red border](https://raw.githubusercontent.com/Nis-Knowit/Knowit.Umbraco.EditorLock/main/docs/img/locked-readonly.webp)
 
 **Requesting access — the holder is prompted to accept or decline:**
 
@@ -26,7 +26,7 @@ are replaced by **Request access** and **Force access**. Real-time, over SignalR
 
 **The holder keeps editing as normal:**
 
-![Editor with normal Save buttons](https://raw.githubusercontent.com/Nis-Knowit/Knowit.Umbraco.EditorLock/main/docs/img/editor-normal.png)
+![Editor with normal Save buttons](https://raw.githubusercontent.com/Nis-Knowit/Knowit.Umbraco.EditorLock/main/docs/img/editor-normal.webp)
 
 ## Features
 
