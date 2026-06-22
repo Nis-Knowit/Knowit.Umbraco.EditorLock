@@ -18,6 +18,7 @@
     <PackageTags>umbraco;umbraco-marketplace;editor-lock;content-lock;concurrency;signalr</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageProjectUrl>https://github.com/Nis-Knowit/Knowit.Umbraco.EditorLock</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Nis-Knowit/Knowit.Umbraco.EditorLock</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -40,8 +41,9 @@
     <!-- Make the umbraco-package.json visible in the solution (the built copy in wwwroot is what ships) -->
     <None Include="Client\public\umbraco-package.json" Pack="false" />
 
-    <!-- Pack the README so it shows on the NuGet package page -->
+    <!-- Pack the README and icon so they show on the NuGet package page / Marketplace -->
     <None Include="README.md" Pack="true" PackagePath="\" />
+    <None Include="icon.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <ItemGroup>
